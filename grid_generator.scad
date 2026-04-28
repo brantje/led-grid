@@ -6,8 +6,8 @@
 led_count_x = 16; // Number of LEDs 
 led_count_y = 16; // Number of LEDs 
 
-// Distance between leds in mm
-pitch = 12; // 40 leds/m = 28, 60 leds/m = 12
+// Distance between leds in mm. 40 leds/m = 28, 60 leds/m = 12
+pitch = 12;
 
 // Grid properties
 wall_thickness = 1.2;   // Thickness in mm
