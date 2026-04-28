@@ -40,11 +40,19 @@
             <input type="number" id="per-channel" name="perChannel" min="1" step="1" value="1000" inputmode="numeric">
           </div>
           <div class="field">
-            <label for="watt-per-led">Wattage per LED</label>
+            <label for="watt-per-led">Wattage per LED (max / full white)</label>
             <div class="field-row">
               <input type="number" id="watt-per-led" name="wattPerLed" min="0" step="any" value="0.3" inputmode="decimal" aria-describedby="unit-w">
               <span class="unit" id="unit-w">W</span>
             </div>
+          </div>
+          <div class="field">
+            <label for="typical-brightness">Typical brightness</label>
+            <div class="field-row">
+              <input type="number" id="typical-brightness" name="typicalBrightness" min="0" max="100" step="1" value="30" inputmode="numeric" aria-describedby="unit-brightness hint-brightness">
+              <span class="unit" id="unit-brightness">%</span>
+            </div>
+            <p class="field-hint" id="hint-brightness">Scales power and current for everyday levels; max values assume all pixels at full white.</p>
           </div>
           <div class="field">
             <label for="volts">Volts</label>
@@ -76,12 +84,20 @@
             <dd id="out-outputs" class="result-value">—</dd>
           </div>
           <div class="result-row">
-            <dt>Total wattage</dt>
-            <dd id="out-watts" class="result-value">—</dd>
+            <dt>Typical wattage</dt>
+            <dd id="out-watts-typical" class="result-value">—</dd>
           </div>
           <div class="result-row">
-            <dt>Amp</dt>
-            <dd id="out-amps" class="result-value result-value--accent">—</dd>
+            <dt>Typical amps</dt>
+            <dd id="out-amps-typical" class="result-value result-value--accent">—</dd>
+          </div>
+          <div class="result-row result-row--secondary">
+            <dt>Max wattage (full white)</dt>
+            <dd id="out-watts-max" class="result-value">—</dd>
+          </div>
+          <div class="result-row result-row--secondary">
+            <dt>Max amps (full white)</dt>
+            <dd id="out-amps-max" class="result-value">—</dd>
           </div>
         </dl>
         <p class="results-generator" id="grid-generator-wrap" hidden>

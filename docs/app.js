@@ -7,6 +7,7 @@
     ledsPerM: document.getElementById("leds-per-m"),
     perChannel: document.getElementById("per-channel"),
     wattPerLed: document.getElementById("watt-per-led"),
+    typicalBrightness: document.getElementById("typical-brightness"),
     volts: document.getElementById("volts"),
   };
 
@@ -15,8 +16,10 @@
     ledsH: document.getElementById("out-leds-h"),
     totalLeds: document.getElementById("out-total-leds"),
     outputAmount: document.getElementById("out-outputs"),
-    watts: document.getElementById("out-watts"),
-    amps: document.getElementById("out-amps"),
+    wattsTypical: document.getElementById("out-watts-typical"),
+    ampsTypical: document.getElementById("out-amps-typical"),
+    wattsMax: document.getElementById("out-watts-max"),
+    ampsMax: document.getElementById("out-amps-max"),
   };
 
   var gridGeneratorWrap = document.getElementById("grid-generator-wrap");
@@ -27,8 +30,8 @@
 
   function gridGeneratorUrl(ledCountX, ledCountY) {
     var vars = JSON.stringify({
-      led_count_x: ledCountX,
-      led_count_y: ledCountY,
+      // led_count_x: ledCountX,
+      // led_count_y: ledCountY,
     });
     return (
       "https://scadder.dev/index.html?file=" +
@@ -43,6 +46,14 @@
     if (raw === "") return null;
     var n = Number(raw);
     if (!Number.isFinite(n) || n < 0) return null;
+    return n;
+  }
+
+  function parseBrightnessPercent(el) {
+    var raw = el.value.trim();
+    if (raw === "") return null;
+    var n = Number(raw);
+    if (!Number.isFinite(n) || n < 0 || n > 100) return null;
     return n;
   }
 
@@ -63,8 +74,10 @@
     outputs.ledsH.textContent = "—";
     outputs.totalLeds.textContent = "—";
     outputs.outputAmount.textContent = "—";
-    outputs.watts.textContent = "—";
-    outputs.amps.textContent = "—";
+    outputs.wattsTypical.textContent = "—";
+    outputs.ampsTypical.textContent = "—";
+    outputs.wattsMax.textContent = "—";
+    outputs.ampsMax.textContent = "—";
     gridGeneratorWrap.hidden = true;
   }
 
@@ -74,6 +87,7 @@
     var ledsPerM = parsePositiveNumber(inputs.ledsPerM);
     var perChannel = parsePositiveNumber(inputs.perChannel);
     var wattPerLed = parsePositiveNumber(inputs.wattPerLed);
+    var brightnessPct = parseBrightnessPercent(inputs.typicalBrightness);
     var volts = parsePositiveNumber(inputs.volts);
 
     if (
@@ -82,6 +96,7 @@
       ledsPerM === null ||
       perChannel === null ||
       wattPerLed === null ||
+      brightnessPct === null ||
       volts === null ||
       perChannel <= 0 ||
       volts === 0
@@ -96,15 +111,19 @@
     var ledCountH = Math.floor(ledsH);
     var totalLeds = ledCountW * ledCountH;
     var outputAmount = Math.ceil(totalLeds / perChannel);
-    var totalWatts = totalLeds * wattPerLed;
-    var amps = totalWatts / volts;
+    var totalWattsMax = totalLeds * wattPerLed;
+    var totalWattsTypical = totalWattsMax * (brightnessPct / 100);
+    var ampsTypical = totalWattsTypical / volts;
+    var ampsMax = totalWattsMax / volts;
 
     outputs.ledsW.textContent = formatEdgeCount(ledCountW);
     outputs.ledsH.textContent = formatEdgeCount(ledCountH);
     outputs.totalLeds.textContent = String(totalLeds);
     outputs.outputAmount.textContent = String(outputAmount);
-    outputs.watts.textContent = formatDecimal(totalWatts, 2);
-    outputs.amps.textContent = formatDecimal(amps, 2);
+    outputs.wattsTypical.textContent = formatDecimal(totalWattsTypical, 2);
+    outputs.ampsTypical.textContent = formatDecimal(ampsTypical, 2);
+    outputs.wattsMax.textContent = formatDecimal(totalWattsMax, 2);
+    outputs.ampsMax.textContent = formatDecimal(ampsMax, 2);
 
     gridGeneratorLink.href = gridGeneratorUrl(ledCountW, ledCountH);
     gridGeneratorWrap.hidden = false;

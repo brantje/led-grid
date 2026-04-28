@@ -101,6 +101,13 @@ body {
   margin-bottom: 0.35rem;
 }
 
+.field-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
 .field-row {
   display: flex;
   align-items: center;
@@ -173,6 +180,13 @@ input[type="number"]:focus-visible {
   margin-top: 0.15rem;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+}
+
+.result-row--secondary dt,
+.result-row--secondary dd {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
 }
 
 .result-row dt {
