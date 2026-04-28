@@ -16,7 +16,7 @@ wall_thickness = 1.2;   // Thickness in mm
 wall_height = 8;       // Height in mm
 
 // Base
-base_thickness = 0.6 // Base in mm;
+base_thickness = 0.6; // Base in mm;
 
 // =======================
 // DERIVED
