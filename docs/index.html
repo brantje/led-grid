@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Led Grid Calc</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <h1 class="title">Led Grid Calc</h1>
+      <p class="subtitle">Estimate LED count, outputs, and power for a rectangular panel.</p>
+    </header>
+
+    <main class="layout">
+      <section class="card" aria-labelledby="inputs-heading">
+        <h2 id="inputs-heading" class="card-title">Inputs</h2>
+        <form class="form" id="calc-form">
+          <div class="field">
+            <label for="panel-width">Panel width</label>
+            <div class="field-row">
+              <input type="number" id="panel-width" name="panelWidth" min="0" step="any" value="125" inputmode="decimal" aria-describedby="unit-cm-width">
+              <span class="unit" id="unit-cm-width">cm</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="panel-height">Panel height</label>
+            <div class="field-row">
+              <input type="number" id="panel-height" name="panelHeight" min="0" step="any" value="125" inputmode="decimal" aria-describedby="unit-cm-height">
+              <span class="unit" id="unit-cm-height">cm</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="leds-per-m">LEDs per meter</label>
+            <input type="number" id="leds-per-m" name="ledsPerM" min="0" step="any" value="60" inputmode="decimal">
+          </div>
+          <div class="field">
+            <label for="per-channel">Recommended per channel</label>
+            <input type="number" id="per-channel" name="perChannel" min="1" step="1" value="1000" inputmode="numeric">
+          </div>
+          <div class="field">
+            <label for="watt-per-led">Wattage per LED</label>
+            <div class="field-row">
+              <input type="number" id="watt-per-led" name="wattPerLed" min="0" step="any" value="0.3" inputmode="decimal" aria-describedby="unit-w">
+              <span class="unit" id="unit-w">W</span>
+            </div>
+          </div>
+          <div class="field">
+            <label for="volts">Volts</label>
+            <div class="field-row">
+              <input type="number" id="volts" name="volts" min="0" step="any" value="5" inputmode="decimal" aria-describedby="unit-v">
+              <span class="unit" id="unit-v">V</span>
+            </div>
+          </div>
+        </form>
+      </section>
+
+      <section class="card card--results" aria-labelledby="results-heading">
+        <h2 id="results-heading" class="card-title">Results</h2>
+        <dl class="results">
+          <div class="result-row">
+            <dt>Total LEDs width</dt>
+            <dd id="out-leds-w" class="result-value">—</dd>
+          </div>
+          <div class="result-row">
+            <dt>Total LEDs height</dt>
+            <dd id="out-leds-h" class="result-value">—</dd>
+          </div>
+          <div class="result-row">
+            <dt>Total LEDs</dt>
+            <dd id="out-total-leds" class="result-value result-value--accent">—</dd>
+          </div>
+          <div class="result-row">
+            <dt>Recommended output amount</dt>
+            <dd id="out-outputs" class="result-value">—</dd>
+          </div>
+          <div class="result-row">
+            <dt>Total wattage</dt>
+            <dd id="out-watts" class="result-value">—</dd>
+          </div>
+          <div class="result-row">
+            <dt>Amp</dt>
+            <dd id="out-amps" class="result-value result-value--accent">—</dd>
+          </div>
+        </dl>
+      </section>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
