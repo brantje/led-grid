@@ -3,20 +3,18 @@
 // =======================
 
 // LED layout
-led_count_x = 16;
-led_count_y = 16;
+led_count_x = 16; // Number of LEDs 
+led_count_y = 16; // Number of LEDs 
 
 // Distance between leds in mm
-// 40 leds/m = 28
-// 60 leds/m = 12
-pitch = 28;
+pitch = 12; // 40 leds/m = 28, 60 leds/m = 12
 
 // Grid properties
 wall_thickness = 1.2;   // Thickness in mm
 wall_height = 8;       // Height in mm
 
 // Base
-base_thickness = 0.6; // Base in mm;
+base_thickness = 0.6; // Base thickness in mm;
 
 // =======================
 // DERIVED
@@ -24,7 +22,7 @@ base_thickness = 0.6; // Base in mm;
 half_wall = wall_thickness / 2;
 
 total_x = led_count_x * pitch;
-total_y = led_count_y * pitch;
+total_y = led_count_y  * pitch;
 
 // =======================
 // MODULES

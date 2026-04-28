@@ -47,20 +47,21 @@
             </div>
           </div>
           <div class="field">
-            <label for="typical-brightness">Typical brightness</label>
-            <div class="field-row">
-              <input type="number" id="typical-brightness" name="typicalBrightness" min="0" max="100" step="1" value="30" inputmode="numeric" aria-describedby="unit-brightness hint-brightness">
-              <span class="unit" id="unit-brightness">%</span>
-            </div>
-            <p class="field-hint" id="hint-brightness">Scales power and current for everyday levels; max values assume all pixels at full white.</p>
-          </div>
-          <div class="field">
             <label for="volts">Volts</label>
             <div class="field-row">
               <input type="number" id="volts" name="volts" min="0" step="any" value="5" inputmode="decimal" aria-describedby="unit-v">
               <span class="unit" id="unit-v">V</span>
             </div>
           </div>
+          <div class="field field--slider">
+            <div class="field-label-row">
+              <label for="typical-brightness">Typical brightness</label>
+              <span class="slider-value" id="typical-brightness-value" aria-live="polite">30%</span>
+            </div>
+            <input type="range" id="typical-brightness" name="typicalBrightness" class="input-range" min="0" max="100" step="1" value="30" aria-valuemin="0" aria-valuemax="100" aria-valuenow="30" aria-describedby="hint-brightness">
+            <p class="field-hint" id="hint-brightness">Scales power and current for everyday levels; max values assume all pixels at full white.</p>
+          </div>
+        
         </form>
       </section>
 

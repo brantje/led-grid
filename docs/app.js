@@ -24,6 +24,7 @@
 
   var gridGeneratorWrap = document.getElementById("grid-generator-wrap");
   var gridGeneratorLink = document.getElementById("grid-generator-link");
+  var typicalBrightnessValue = document.getElementById("typical-brightness-value");
 
   var GRID_SCAD_FILE =
     "https://raw.githubusercontent.com/brantje/led-grid/refs/heads/main/grid_generator.scad";
@@ -89,6 +90,13 @@
     var wattPerLed = parsePositiveNumber(inputs.wattPerLed);
     var brightnessPct = parseBrightnessPercent(inputs.typicalBrightness);
     var volts = parsePositiveNumber(inputs.volts);
+
+    inputs.typicalBrightness.setAttribute(
+      "aria-valuenow",
+      brightnessPct === null ? "" : String(brightnessPct)
+    );
+    typicalBrightnessValue.textContent =
+      brightnessPct === null ? "—" : String(brightnessPct) + "%";
 
     if (
       wCm === null ||
