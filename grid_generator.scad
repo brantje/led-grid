@@ -13,10 +13,10 @@ pitch = 28;
 
 // Grid properties
 wall_thickness = 1.2;   // Thickness in mm
-wall_height = 10;       // Height in mm
+wall_height = 8;       // Height in mm
 
 // Base
-base_thickness = 0.6;
+base_thickness = 0.6 // Base in mm;
 
 // =======================
 // DERIVED
