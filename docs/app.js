@@ -19,6 +19,25 @@
     amps: document.getElementById("out-amps"),
   };
 
+  var gridGeneratorWrap = document.getElementById("grid-generator-wrap");
+  var gridGeneratorLink = document.getElementById("grid-generator-link");
+
+  var GRID_SCAD_FILE =
+    "https://raw.githubusercontent.com/brantje/led-grid/refs/heads/main/grid_generator.scad";
+
+  function gridGeneratorUrl(ledCountX, ledCountY) {
+    var vars = JSON.stringify({
+      led_count_x: ledCountX,
+      led_count_y: ledCountY,
+    });
+    return (
+      "https://scadder.dev/index.html?file=" +
+      encodeURIComponent(GRID_SCAD_FILE) +
+      "&vars=" +
+      encodeURIComponent(vars)
+    );
+  }
+
   function parsePositiveNumber(el) {
     var raw = el.value.trim();
     if (raw === "") return null;
@@ -46,6 +65,7 @@
     outputs.outputAmount.textContent = "—";
     outputs.watts.textContent = "—";
     outputs.amps.textContent = "—";
+    gridGeneratorWrap.hidden = true;
   }
 
   function update() {
@@ -85,6 +105,9 @@
     outputs.outputAmount.textContent = String(outputAmount);
     outputs.watts.textContent = formatDecimal(totalWatts, 2);
     outputs.amps.textContent = formatDecimal(amps, 2);
+
+    gridGeneratorLink.href = gridGeneratorUrl(ledCountW, ledCountH);
+    gridGeneratorWrap.hidden = false;
   }
 
   var form = document.getElementById("calc-form");
